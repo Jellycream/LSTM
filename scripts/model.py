@@ -130,7 +130,7 @@ model.summary()
 # Training Loop
 
 # Training step
-EPOCHS = 5
+EPOCHS = 30
 
 for epoch in range(EPOCHS):
     start = time.time()
