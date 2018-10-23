@@ -69,6 +69,7 @@ class Model(tf.keras.Model):
 
     self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_dim)
 
+    #Check for GPU then build for cpu or gpu optimized gru layer
     if tf.test.is_gpu_available():
       self.gru = tf.keras.layers.CuDNNGRU(self.units, 
                                           return_sequences=True, 
@@ -80,7 +81,7 @@ class Model(tf.keras.Model):
                                      recurrent_activation='sigmoid', 
                                      recurrent_initializer='glorot_uniform', 
                                      stateful=True)
-
+    #Dense Layer
     self.fc = tf.keras.layers.Dense(vocab_size)
         
   def call(self, x):
@@ -138,7 +139,7 @@ model.summary()
 # Training Loop
 
 # Training step
-EPOCHS = 1
+EPOCHS = 30
 
 for epoch in range(EPOCHS):
     start = time.time()
